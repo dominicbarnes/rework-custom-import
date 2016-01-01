@@ -1,0 +1,7 @@
+
+@import './a.css';
+@import './b.css';
+
+* {
+  box-sizing: border-box;
+}

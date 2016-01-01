@@ -6,7 +6,6 @@
   "repository": "dominicbarnes/rework-custom-import",
   "license": "MIT",
   "dependencies": {
-    "array-flatten": "^2.0.0",
     "css": "^2.2.1",
     "parse-import": "^2.0.0"
   },

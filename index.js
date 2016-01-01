@@ -3,7 +3,6 @@
 
 let assert = require('assert');
 let css = require('css');
-let flatten = require('array-flatten');
 let parse = require('parse-import');
 
 module.exports = function (mapping) {
@@ -11,12 +10,15 @@ module.exports = function (mapping) {
   assert(typeof mapping === 'object', 'you must supply a precomputed mapping');
 
   return function run(style) {
-    let rules = style.rules;
-    let source = rules[0].position.source;
+    let source = getSource(style);
     let meta = mapping[source];
+    let rules = [];
 
-    rules.forEach(function (rule, x) {
-      if (rule.type !== 'import') return;
+    style.rules.forEach(function (rule) {
+      if (rule.type !== 'import') {
+        rules.push(rule);
+        return;
+      }
 
       let data = parse(`@import ${rule.import};`).shift();
       let dep = mapping[meta.deps[data.path]];
@@ -24,14 +26,21 @@ module.exports = function (mapping) {
       run(content);
 
       if (data.condition && data.condition.length) {
-        rules.splice(x, 1, {
+        rules.push({
           media: data.condition,
           rules: content.rules,
           type: 'media'
         });
       } else {
-        rules.splice.apply(rules, flatten([ x, 1, content.rules ]));
+        rules.push.apply(rules, content.rules);
       }
     });
+
+    style.rules = rules;
   };
 };
+
+function getSource(style) {
+  if (style.rules.length === 0) return null;
+  return style.rules[0].position.source;
+}

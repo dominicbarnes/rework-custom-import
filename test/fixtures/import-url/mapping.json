@@ -7,7 +7,7 @@
   },
   "input.css": {
     "id": "input.css",
-    "source": "\n@import './dep.css';\n\n* {\n  box-sizing: border-box;\n}\n",
+    "source": "\n@import url('./dep.css');\n\n* {\n  box-sizing: border-box;\n}\n",
     "deps": {
       "./dep.css": "dep.css"
     },

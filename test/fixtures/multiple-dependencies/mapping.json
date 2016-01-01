@@ -1,0 +1,23 @@
+{
+  "a.css": {
+    "id": "a.css",
+    "source": "\na:link {\n  color: red;\n}\n\na:visited {\n  color: green;\n}\n\na:hover {\n  color: blue;\n}\n\na:active {\n  color: grey;\n}\n",
+    "deps": {},
+    "entry": false
+  },
+  "b.css": {
+    "id": "b.css",
+    "source": "\nbody {\n  color: blue;\n}\n",
+    "deps": {},
+    "entry": false
+  },
+  "input.css": {
+    "id": "input.css",
+    "source": "\n@import './a.css';\n@import './b.css';\n\n* {\n  box-sizing: border-box;\n}\n",
+    "deps": {
+      "./a.css": "a.css",
+      "./b.css": "b.css"
+    },
+    "entry": true
+  }
+}
