@@ -1,0 +1,17 @@
+sudo: false
+language: node_js
+node_js:
+- stable
+- 4
+install: npm update
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: npm
+  email: dominic@dbarnes.info
+  api_key:
+    secure: T+ATO1pwCbZNYUTX3+lRpOraBjclzRqgVQEFALsWgrYtwVih9y3tGZHT0GdyRxDaJPQZB0OPl867VAq5jFHOxQuz2+fXdLq6Q+pV22GtLzDaemYtvopRrtLKZ/76AGK7mxU0jN+N7weViPXFcLIaFOkw24lQlt5lc/Co3Hkywf1nmpUa1vEbihMS6oLBoUJUjOudt05r3lOvP/LB/GGr9WPbA9YZXf3pNF51cSU/mD7AiWYk5QrGn68Pj9cG4DyvGQrwa5g34KvM/yNrDJH4d5QJQ0wykPHUQm37/wK63o+0P9ebcg2lD52EM+u/z03fdJIRi0lTjx9ZPZisXkde0PIoqVQjeezIVSoF5HLqjMcSV/HzZFavmj3EjwiqOfU63VnLmLZSPB2W64B6CV9Mj26bYtdrhAz64sHUY0R7fhtMKw205k53ktIE23YwBOiBW3UkX+mxsljfP74lb4QXUwpIvco5lUpqT0mI7i1Vf39LtgvdHDpA09Qt5qDc3XPM+TuFydLZ8guFcA+/118foc662JpcGowTTXJz+c+2jIOMZmU9BxN80TImkJ1szl6h/sFfFKSWqlFj6PKreVnOL4VuusxDhGa0TXPwdD3MYIBhdQyhiB9vaBaqsD089JRy5LmqrBOOSJDrkeny9DWFUmpalxCJmVJgI5dfFswM83E=
+  on:
+    tags: true
+    repo: dominicbarnes/rework-custom-import
