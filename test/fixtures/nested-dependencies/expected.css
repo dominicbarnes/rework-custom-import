@@ -1,0 +1,12 @@
+
+a {
+  color: red;
+}
+
+body {
+  color: blue;
+}
+
+* {
+  box-sizing: border-box;
+}

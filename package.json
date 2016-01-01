@@ -1,0 +1,30 @@
+{
+  "name": "rework-custom-import",
+  "version": "0.0.0",
+  "description": "Handles inlining CSS imports where dependency resolution has already been completed by another build tool.",
+  "author": "Dominic Barnes <dominic@dbarnes.info>",
+  "repository": "dominicbarnes/rework-custom-import",
+  "license": "MIT",
+  "dependencies": {
+    "array-flatten": "^2.0.0",
+    "css": "^2.2.1",
+    "parse-import": "^2.0.0"
+  },
+  "devDependencies": {
+    "@dominicbarnes/eslint-config": "^0.2.1",
+    "@dominicbarnes/eslint-config-node": "^0.2.1",
+    "@dominicbarnes/eslint-config-test": "^0.1.1",
+    "eslint": "^1.10.3",
+    "eslint-plugin-mocha": "^1.1.0",
+    "eslint-plugin-require-path-exists": "^1.0.25",
+    "glob": "^6.0.3",
+    "mocha": "^2.3.4",
+    "rework": "^1.0.1"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "mappings": "node test/scripts/mappings",
+    "pretest": "npm run lint",
+    "test": "mocha"
+  }
+}
