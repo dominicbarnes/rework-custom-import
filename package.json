@@ -1,6 +1,6 @@
 {
   "name": "rework-custom-import",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Handles inlining CSS imports where dependency resolution has already been completed by another build tool.",
   "author": "Dominic Barnes <dominic@dbarnes.info>",
   "repository": "dominicbarnes/rework-custom-import",
