@@ -1,49 +1,50 @@
+/* eslint-env mocha */
 
-'use strict';
+'use strict'
 
-let assert = require('assert');
-let fs = require('fs');
-let path = require('path');
-let rework = require('rework');
-let plugin = require('..');
+let assert = require('assert')
+let fs = require('fs')
+let path = require('path')
+let rework = require('rework')
+let plugin = require('..')
 
-let fixture = path.resolve.bind(path, __dirname, 'fixtures');
-const fixtures = fs.readdirSync(fixture());
+let fixture = path.resolve.bind(path, __dirname, 'fixtures')
+const fixtures = fs.readdirSync(fixture())
 
 describe('rework-custom-import', function () {
   fixtures.forEach(function (name) {
-    let spec = load(name);
+    let spec = load(name)
 
     it(spec.description, function () {
       if (spec.error) {
-        assert.throws(run, new RegExp(spec.error));
+        assert.throws(run, new RegExp(spec.error))
       } else {
-        run();
+        run()
       }
     })
 
     function run () {
       let actual = rework(spec.input, { source: 'input.css' })
         .use(plugin(spec.mapping))
-        .toString();
+        .toString()
 
-      assert.equal(actual.trim(), spec.expected.trim());
+      assert.equal(actual.trim(), spec.expected.trim())
     }
-  });
-});
+  })
+})
 
-function load(name) {
+function load (name) {
   return Object.assign(json(fixture(name, 'spec.json')), {
     input: read(fixture(name, 'input.css')),
     expected: read(fixture(name, 'expected.css')),
     mapping: json(fixture(name, 'mapping.json'))
-  });
+  })
 }
 
-function json(file) {
-  return JSON.parse(read(file));
+function json (file) {
+  return JSON.parse(read(file))
 }
 
-function read(file) {
-  return fs.readFileSync(file, 'utf8');
+function read (file) {
+  return fs.readFileSync(file, 'utf8')
 }
