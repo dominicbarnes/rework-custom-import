@@ -1,4 +1,10 @@
 
+0.2.1 / 2016-11-17
+==================
+
+  * test(travis): expand node versions
+  * refactor: switch to standard
+
 0.2.0 / 2016-11-17
 ==================
 
