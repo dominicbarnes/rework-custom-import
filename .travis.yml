@@ -1,12 +1,14 @@
 sudo: false
 language: node_js
 node_js:
-- stable
-- 4
+  - 7
+  - 6
+  - 5
+  - 4
 install: npm update
 cache:
   directories:
-  - node_modules
+    - node_modules
 deploy:
   provider: npm
   email: dominic@dbarnes.info
