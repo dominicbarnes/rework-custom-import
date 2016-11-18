@@ -18,6 +18,7 @@
     "eslint-plugin-mocha": "^1.1.0",
     "eslint-plugin-require-path-exists": "^1.0.25",
     "glob": "^6.0.3",
+    "is-url": "^1.2.2",
     "mocha": "^2.3.4",
     "rework": "^1.0.1"
   },

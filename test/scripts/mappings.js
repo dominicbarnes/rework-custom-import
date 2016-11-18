@@ -10,6 +10,7 @@
 
 let css = require('css');
 let fs = require('fs');
+let isUrl = require('is-url');
 let glob = require('glob');
 let parse = require('parse-import');
 let path = require('path');
@@ -39,7 +40,11 @@ function deps(source) {
     .filter(rule => rule.type === 'import')
     .map(rule => parse(`@import ${rule.import};`).shift())
     .reduce(function (acc, data) {
-      acc[data.path] = path.normalize(data.path);
+      if (isUrl(data.path)) {
+        acc[data.path] = false;
+      } else if (data.path !== 'IGNORE') {
+        acc[data.path] = path.normalize(data.path);
+      }
       return acc;
     }, {});
 }

@@ -1,0 +1,10 @@
+{
+  "input.css": {
+    "id": "input.css",
+    "source": "\n@import url('https://fonts.googleapis.com/css?family=Assistant');\n\nhtml {\n  margin: 10px;\n}\n",
+    "deps": {
+      "https://fonts.googleapis.com/css?family=Assistant": false
+    },
+    "entry": true
+  }
+}

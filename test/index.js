@@ -10,18 +10,25 @@ let plugin = require('..');
 let fixture = path.resolve.bind(path, __dirname, 'fixtures');
 const fixtures = fs.readdirSync(fixture());
 
-
 describe('rework-custom-import', function () {
   fixtures.forEach(function (name) {
     let spec = load(name);
 
     it(spec.description, function () {
+      if (spec.error) {
+        assert.throws(run, new RegExp(spec.error));
+      } else {
+        run();
+      }
+    })
+
+    function run () {
       let actual = rework(spec.input, { source: 'input.css' })
         .use(plugin(spec.mapping))
         .toString();
 
       assert.equal(actual.trim(), spec.expected.trim());
-    });
+    }
   });
 });
 

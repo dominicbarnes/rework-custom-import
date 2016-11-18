@@ -24,19 +24,32 @@ module.exports = function (mapping) {
 
       debug('importing %s', rule.import);
       let data = parse(`@import ${rule.import};`).shift();
-      let dep = mapping[meta.deps[data.path]];
-      let content = css.parse(dep.source, { source: dep.id }).stylesheet;
-      run(content);
+      if (!(data.path in meta.deps)) {
+        throw new Error(`cannot find dependency ${data.path} in mapping`);
+      }
 
-      if (data.condition && data.condition.length) {
-        debug('import condition: %j', data.condition);
-        rules.push({
-          media: data.condition,
-          rules: content.rules,
-          type: 'media'
-        });
+      let depId = meta.deps[data.path]
+      if (!depId) {
+        debug('skipping import')
+        rules.push(rule);
+        return;
+      } else if (!(depId in mapping)) {
+        throw new Error(`cannot find file ${depId} in mapping`)
       } else {
-        rules.push.apply(rules, content.rules);
+        let dep = mapping[depId];
+        let content = css.parse(dep.source, { source: dep.id }).stylesheet;
+        run(content);
+
+        if (data.condition && data.condition.length) {
+          debug('import condition: %j', data.condition);
+          rules.push({
+            media: data.condition,
+            rules: content.rules,
+            type: 'media'
+          });
+        } else {
+          rules.push.apply(rules, content.rules);
+        }
       }
     });
 

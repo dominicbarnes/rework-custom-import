@@ -1,0 +1,4 @@
+{
+  "description": "should throw a human-friendly error when a file is not found in the mapping",
+  "error": "cannot find file dep.css in mapping"
+}
