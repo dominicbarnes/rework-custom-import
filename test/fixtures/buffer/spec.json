@@ -1,0 +1,4 @@
+{
+  "description": "should allow buffers to be used in the mapping",
+  "buffer": true
+}

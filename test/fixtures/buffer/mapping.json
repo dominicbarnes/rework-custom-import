@@ -1,0 +1,16 @@
+{
+  "dep.css": {
+    "id": "dep.css",
+    "source": "\nbody {\n  color: blue;\n}\n",
+    "deps": {},
+    "entry": false
+  },
+  "input.css": {
+    "id": "input.css",
+    "source": "\n@import './dep.css';\n\n* {\n  box-sizing: border-box;\n}\n",
+    "deps": {
+      "./dep.css": "dep.css"
+    },
+    "entry": true
+  }
+}

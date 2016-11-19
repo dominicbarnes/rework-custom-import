@@ -34,11 +34,24 @@ describe('rework-custom-import', function () {
 })
 
 function load (name) {
-  return Object.assign(json(fixture(name, 'spec.json')), {
-    input: read(fixture(name, 'input.css')),
-    expected: read(fixture(name, 'expected.css')),
-    mapping: json(fixture(name, 'mapping.json'))
+  let base = json(fixture(name, 'spec.json'))
+  let input = read(fixture(name, 'input.css'))
+  let mapping = json(fixture(name, 'mapping.json'))
+  if (base.buffer) bufferify(mapping)
+  let expected = read(fixture(name, 'expected.css'))
+
+  return Object.assign(base, {
+    input: input,
+    expected: expected,
+    mapping: mapping
   })
+}
+
+function bufferify (mapping) {
+  for (let key of Object.keys(mapping)) {
+    let source = mapping[key].source
+    mapping[key].source = new Buffer(source)
+  }
 }
 
 function json (file) {

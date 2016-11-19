@@ -37,7 +37,7 @@ module.exports = function (mapping) {
         throw new Error(`cannot find file ${depId} in mapping`)
       } else {
         let dep = mapping[depId]
-        let content = css.parse(dep.source, { source: dep.id }).stylesheet
+        let content = css.parse(dep.source.toString(), { source: dep.id }).stylesheet
         run(content)
 
         if (data.condition && data.condition.length) {
